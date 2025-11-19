@@ -107,7 +107,9 @@ int main() {
   LinearRegression linreg(X, y);
   auto [b0, b1, y_predicted] = linreg.leastsq();
   std::cout << b0 << std::endl;
-  std::cout << b1 << std::endl;
-
+  std::cout << b1 << std::endl << std::endl;
+  for (int i = 0; i < static_cast<int>(y_predicted.size()); ++i) {
+    std::cout << y_predicted[i] << " | " << y[i] << std::endl;
+  }
   return 0;
 }
