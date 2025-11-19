@@ -1,15 +1,22 @@
 CXX := g++
-CXXFLAGS := -std=c++23 -Wall -Wextra
+CXXFLAGS := -std=c++17 -Wall -Wextra
 
-# Default target just prints help
-run:
-	@echo "Usage: make run FILE=path/to/file.cpp"
+# All .cpp files in directory cpp/
+SRCS := $(shell find cpp -name "*.cpp")
 
-# Run target compiles and runs the given FILE
-run:
-	@if [ -z "$(f)" ]; then \
-		echo "Error: You must specify FILE=path/to/file.cpp"; \
-		exit 1; \
-	fi
-	$(CXX) $(CXXFLAGS) -o /tmp/runprog $(f) && /tmp/runprog
-	@rm -f /tmp/runprog
+# Output binary
+OUT := ./bin/app
+
+# Default target
+all: build
+
+# Build all cpp files
+build:
+	$(CXX) $(CXXFLAGS) $(SRCS) -o $(OUT)
+
+# Run the built app
+run: build
+	$(OUT)
+
+clean:
+	rm -f $(OUT)
