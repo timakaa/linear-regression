@@ -4,7 +4,7 @@
 
 // Private methods
 
-std::vector<double> LinearRegression::xy_product() {
+std::vector<double> LeastSquares::xy_product() const {
   std::vector<double> xy_product;
   xy_product.reserve(X.size());
   for (size_t i = 0; i < X.size(); i++) {
@@ -13,7 +13,7 @@ std::vector<double> LinearRegression::xy_product() {
   return xy_product;
 }
 
-std::vector<double> LinearRegression::x_squared() {
+std::vector<double> LeastSquares::x_squared() const {
   std::vector<double> result;
   result.reserve(X.size());
   for (size_t i = 0; i < X.size(); i++) {
@@ -22,7 +22,7 @@ std::vector<double> LinearRegression::x_squared() {
   return result;
 }
 
-double LinearRegression::x_sum() {
+double LeastSquares::x_sum() const {
   double result = 0;
   for (double v : X) {
     result += v;
@@ -30,7 +30,7 @@ double LinearRegression::x_sum() {
   return result;
 }
 
-double LinearRegression::y_sum() {
+double LeastSquares::y_sum() const {
   double result = 0;
   for (double v : y) {
     result += v;
@@ -38,7 +38,7 @@ double LinearRegression::y_sum() {
   return result;
 }
 
-double LinearRegression::xy_sum() {
+double LeastSquares::xy_sum() const {
   double result = 0;
   for (double v : xy_product()) {
     result += v;
@@ -46,7 +46,7 @@ double LinearRegression::xy_sum() {
   return result;
 }
 
-double LinearRegression::x_squared_sum() {
+double LeastSquares::x_squared_sum() const {
   double result = 0;
   for (double v : x_squared()) {
     result += v;
@@ -54,23 +54,22 @@ double LinearRegression::x_squared_sum() {
   return result;
 }
 
-double LinearRegression::get_b1() {
-  double len = static_cast<double>(X.size());
+double LeastSquares::get_b1() const {
+  size_t len = X.size();
   return (len * xy_sum() - x_sum() * y_sum()) /
          (len * x_squared_sum() - std::pow(x_sum(), 2));
 }
 
-double LinearRegression::get_b0() {
-  double len = static_cast<double>(X.size());
+double LeastSquares::get_b0() const {
+  size_t len = X.size();
   return (y_sum() - get_b1() * x_sum()) / len;
 }
 
 // Public methods
 
-LinearRegression::LinearRegression(std::vector<double> &x_values,
-                                   std::vector<double> &y_values)
-    : X(x_values), y(y_values) {
-
+LeastSquares::LeastSquares(const std::vector<double> &X_,
+                           const std::vector<double> &y_)
+    : LinearRegression(X_, y_) {
   for (double v : X)
     std::cout << v << " ";
   std::cout << std::endl;
@@ -80,7 +79,7 @@ LinearRegression::LinearRegression(std::vector<double> &x_values,
   std::cout << std::endl;
 }
 
-std::vector<double> LinearRegression::get_y_predicted() {
+std::vector<double> LeastSquares::get_y_predicted() const {
   std::vector<double> y_predicted;
   y_predicted.reserve(X.size());
 
@@ -93,7 +92,7 @@ std::vector<double> LinearRegression::get_y_predicted() {
   return y_predicted;
 }
 
-std::tuple<double, double, std::vector<double>> LinearRegression::leastsq() {
+std::tuple<double, double, std::vector<double>> LeastSquares::predict() const {
   double b0 = get_b0();
   double b1 = get_b1();
   return std::make_tuple(b0, b1, get_y_predicted());
