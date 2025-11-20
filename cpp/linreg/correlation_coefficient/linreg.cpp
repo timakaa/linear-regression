@@ -80,6 +80,14 @@ CorrelationCoefficient::pow_vec(const std::vector<double> &vec) const {
   return result;
 }
 
+double CorrelationCoefficient::get_b0() {
+  return mean(y) - get_b1() * mean(X);
+}
+
+double CorrelationCoefficient::get_b1() {
+  return correlation(X, y) (std(y) / std(X));
+}
+
 // Public methods
 
 CorrelationCoefficient::CorrelationCoefficient(const std::vector<double> &X_,
@@ -87,10 +95,16 @@ CorrelationCoefficient::CorrelationCoefficient(const std::vector<double> &X_,
     : LinearRegression(X_, y_) {}
 
 std::vector<double> CorrelationCoefficient::get_y_predicted() {
+  std::vector<double> result;
+  result.reserve(X.size());
   double corr = correlation(X, y);
 
-  double b1 = corr * (std(y) / std(X));
-  double b0 = mean(y) - b1 * mean(X);
+  double b1 = get_b1();
+  double b0 = get_b0();
 
-  // get_b1, get_b0 implementation;
+  for(double p : X) {
+    result.push_back(b0 + b1 * p);
+  }
+
+  return result
 }
