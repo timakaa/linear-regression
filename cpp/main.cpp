@@ -1,3 +1,4 @@
+#include "linreg/correlation_coefficient/linreg.h"
 #include "linreg/least_squares/linreg.h"
 #include <iostream>
 #include <vector>
@@ -5,6 +6,9 @@
 int main() {
   std::vector<double> X = {1, 2, 3, 4, 5, 6, 7};
   std::vector<double> y = {1.5, 3.8, 6.7, 9.0, 11.2, 13.6, 16};
+
+  std::cout << std::endl;
+  std::cout << "LEAST SQUARES ---------------" << std::endl;
 
   LeastSquares linreg(X, y);
 
@@ -16,5 +20,21 @@ int main() {
   for (size_t i = 0; i < y_predicted.size(); ++i) {
     std::cout << y_predicted[i] << " | " << y[i] << std::endl;
   }
+
+  std::cout << std::endl;
+
+  std::cout << "CORRELATION COEFFICIENT ---------------" << std::endl;
+
+  CorrelationCoefficient linregcoef(X, y);
+
+  auto [b0_corr, b1_corr, y_predicted_corr] = linregcoef.predict();
+
+  std::cout << std::endl;
+  std::cout << b0_corr << std::endl;
+  std::cout << b1_corr << std::endl << std::endl;
+  for (size_t i = 0; i < y_predicted_corr.size(); ++i) {
+    std::cout << y_predicted_corr[i] << " | " << y[i] << std::endl;
+  }
+
   return 0;
 }

@@ -1,13 +1,12 @@
 #include "linreg.h"
 #include <cmath>
-#include <iostream>
 #include <stdexcept>
 #include <vector>
 
 // Private methods
 
 double CorrelationCoefficient::sum_vec(const std::vector<double> &vec) const {
-  double result;
+  double result = 0;
 
   for (double v : vec) {
     result += v;
@@ -32,7 +31,7 @@ double CorrelationCoefficient::std(const std::vector<double> &vec) const {
 }
 
 double CorrelationCoefficient::correlation(const std::vector<double> &X,
-                                           const std::vector<double> &y) {
+                                           const std::vector<double> &y) const {
   double result = 0;
   double x_mean = mean(X);
   double y_mean = mean(y);
@@ -43,7 +42,7 @@ double CorrelationCoefficient::correlation(const std::vector<double> &X,
     result += ((X[i] - x_mean) / x_std) * ((y[i] - y_mean) / y_std);
   }
 
-  return result;
+  return result / X.size();
 }
 
 std::vector<double>
@@ -80,12 +79,12 @@ CorrelationCoefficient::pow_vec(const std::vector<double> &vec) const {
   return result;
 }
 
-double CorrelationCoefficient::get_b0() {
+double CorrelationCoefficient::get_b0() const {
   return mean(y) - get_b1() * mean(X);
 }
 
-double CorrelationCoefficient::get_b1() {
-  return correlation(X, y) (std(y) / std(X));
+double CorrelationCoefficient::get_b1() const {
+  return correlation(X, y) * (std(y) / std(X));
 }
 
 // Public methods
@@ -94,17 +93,21 @@ CorrelationCoefficient::CorrelationCoefficient(const std::vector<double> &X_,
                                                const std::vector<double> &y_)
     : LinearRegression(X_, y_) {}
 
-std::vector<double> CorrelationCoefficient::get_y_predicted() {
+std::vector<double> CorrelationCoefficient::get_y_predicted() const {
   std::vector<double> result;
   result.reserve(X.size());
-  double corr = correlation(X, y);
 
   double b1 = get_b1();
   double b0 = get_b0();
 
-  for(double p : X) {
+  for (double p : X) {
     result.push_back(b0 + b1 * p);
   }
 
-  return result
+  return result;
+}
+
+std::tuple<double, double, std::vector<double>>
+CorrelationCoefficient::predict() const {
+  return std::make_tuple(get_b0(), get_b1(), get_y_predicted());
 }

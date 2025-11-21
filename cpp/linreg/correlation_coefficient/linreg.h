@@ -1,5 +1,5 @@
-#ifndef LINREG_H
-#define LINREG_H
+#ifndef LINREGCOEF_H
+#define LINREGCOEF_H
 
 #include "../main.h"
 #include <tuple>
@@ -15,7 +15,7 @@ private:
   double std(const std::vector<double> &vec) const;
 
   double correlation(const std::vector<double> &X,
-                     const std::vector<double> &y);
+                     const std::vector<double> &y) const;
 
   double get_b1() const;
   double get_b0() const;
