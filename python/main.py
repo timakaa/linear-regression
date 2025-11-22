@@ -1,7 +1,18 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import math
 
-data = [{ "x": 1, "y": 1.5 }, { "x": 2, "y": 3.8 }, { "x": 3, "y": 6.7 }, { "x": 4, "y": 9.0 }, { "x": 5, "y": 11.2 }, { "x": 6, "y": 13.6 }, { "x": 7, "y": 16 }]
+rng = np.random.default_rng()
+
+X = np.arange(1, 100)
+
+true_intercept = 0.5
+true_slope = 2.2
+
+noise_sigma = 25
+Y = true_intercept + true_slope * X + rng.normal(0, noise_sigma, size=X.shape)
+
+data = [{"x": int(xi), "y": float(yi)} for xi, yi in zip(X, Y)]
 
 class LinearRegression():
     def __init__(self, data):
@@ -99,11 +110,19 @@ class LinearRegression():
 
         return b0, b1, self.get_y_predicted(b0, b1, x_values), x_values, y_values 
 
-polyfit = LinearRegression(data)
-# b0, b1, y_predicted, x_values, y_values = polyfit.leastsq()
-b0, b1, y_predicted, x_values, y_values = polyfit.correlcoef()
+linreg = LinearRegression(data)
+b0, b1, y_predicted, x_values, y_values = linreg.leastsq()
 
 plt.figure(figsize=(10, 6))
+plt.title("Least Squares")
+plt.scatter(x_values, y_values, color="blue")
+plt.plot(x_values, y_predicted, color="red")
+plt.show()
+
+b0, b1, y_predicted, x_values, y_values = linreg.correlcoef()
+
+plt.figure(figsize=(10, 6))
+plt.title("Correlation Coefficient")
 plt.scatter(x_values, y_values, color="blue")
 plt.plot(x_values, y_predicted, color="red")
 plt.show()
