@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/Users/timakaaliebe/Downloads/linear-regression/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/timakaaliebe/Downloads/linear-regression/.venv/lib/python3.14/site-packages/numpy/_core/include -I/Users/timakaaliebe/Downloads/linear-regression/cpp/external -isystem /opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/include/python3.14 -isystem /Users/timakaaliebe/.conan2/p/b/fmt2b1163dd57991/p/include -stdlib=libc++ -O3 -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyApp.dir/cpp/linreg/correlation_coefficient/linreg.cpp.o -c /Users/timakaaliebe/Downloads/linear-regression/cpp/linreg/correlation_coefficient/linreg.cpp",
+  "file": "/Users/timakaaliebe/Downloads/linear-regression/cpp/linreg/correlation_coefficient/linreg.cpp",
+  "output": "CMakeFiles/MyApp.dir/cpp/linreg/correlation_coefficient/linreg.cpp.o"
+},
+{
+  "directory": "/Users/timakaaliebe/Downloads/linear-regression/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/timakaaliebe/Downloads/linear-regression/.venv/lib/python3.14/site-packages/numpy/_core/include -I/Users/timakaaliebe/Downloads/linear-regression/cpp/external -isystem /opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/include/python3.14 -isystem /Users/timakaaliebe/.conan2/p/b/fmt2b1163dd57991/p/include -stdlib=libc++ -O3 -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyApp.dir/cpp/linreg/least_squares/linreg.cpp.o -c /Users/timakaaliebe/Downloads/linear-regression/cpp/linreg/least_squares/linreg.cpp",
+  "file": "/Users/timakaaliebe/Downloads/linear-regression/cpp/linreg/least_squares/linreg.cpp",
+  "output": "CMakeFiles/MyApp.dir/cpp/linreg/least_squares/linreg.cpp.o"
+},
+{
+  "directory": "/Users/timakaaliebe/Downloads/linear-regression/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -I/Users/timakaaliebe/Downloads/linear-regression/.venv/lib/python3.14/site-packages/numpy/_core/include -I/Users/timakaaliebe/Downloads/linear-regression/cpp/external -isystem /opt/homebrew/opt/python@3.14/Frameworks/Python.framework/Versions/3.14/include/python3.14 -isystem /Users/timakaaliebe/.conan2/p/b/fmt2b1163dd57991/p/include -stdlib=libc++ -O3 -DNDEBUG -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -o CMakeFiles/MyApp.dir/cpp/main.cpp.o -c /Users/timakaaliebe/Downloads/linear-regression/cpp/main.cpp",
+  "file": "/Users/timakaaliebe/Downloads/linear-regression/cpp/main.cpp",
+  "output": "CMakeFiles/MyApp.dir/cpp/main.cpp.o"
+}
+]

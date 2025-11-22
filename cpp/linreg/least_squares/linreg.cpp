@@ -1,6 +1,5 @@
 #include "linreg.h"
 #include <cmath>
-#include <iostream>
 
 // Private methods
 
@@ -69,15 +68,7 @@ double LeastSquares::get_b0() const {
 
 LeastSquares::LeastSquares(const std::vector<double> &X_,
                            const std::vector<double> &y_)
-    : LinearRegression(X_, y_) {
-  for (double v : X)
-    std::cout << v << " ";
-  std::cout << std::endl;
-
-  for (double v : y)
-    std::cout << v << " ";
-  std::cout << std::endl;
-}
+    : LinearRegression(X_, y_) {}
 
 std::vector<double> LeastSquares::get_y_predicted() const {
   std::vector<double> y_predicted;
