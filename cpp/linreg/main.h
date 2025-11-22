@@ -2,10 +2,15 @@
 #ifndef LINEARREGRESSION_H
 #define LINEARREGRESSION_H
 
+#include "../math_utils/math_utils.h"
 #include <tuple>
 #include <vector>
 
-class LinearRegression {
+class LinearRegression : public MathUtils {
+private:
+  virtual double get_b0() const = 0;
+  virtual double get_b1() const = 0;
+
 protected:
   std::vector<double> X;
   std::vector<double> y;

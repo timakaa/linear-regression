@@ -8,25 +8,8 @@
 class CorrelationCoefficient : public LinearRegression {
 private:
   // Private method declarations
-  double sum_vec(const std::vector<double> &vec) const;
-
-  double mean(const std::vector<double> &vec) const;
-
-  double std(const std::vector<double> &vec) const;
-
-  double correlation(const std::vector<double> &X,
-                     const std::vector<double> &y) const;
-
-  double get_b1() const;
-  double get_b0() const;
-
-  std::vector<double> mul_vecs(const std::vector<double> &vec) const;
-
-  template <typename... Vectors>
-  std::vector<double> mul_vecs(const std::vector<double> &first,
-                               const Vectors &...rest) const;
-
-  std::vector<double> pow_vec(const std::vector<double> &vec) const;
+  double get_b1() const override;
+  double get_b0() const override;
 
 public:
   CorrelationCoefficient(const std::vector<double> &X_,
